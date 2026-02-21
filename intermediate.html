@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进阶篇 - OpenClaw 中文教程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        claw: {
+                            50: '#fef7ee',
+                            100: '#feefdc',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-3xl mr-2">🐕</span>
+                    <span class="text-xl font-bold text-claw-600">OpenClaw 教程</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-claw-600">首页</a>
+                    <a href="beginner.html" class="text-gray-600 hover:text-claw-600">入门篇</a>
+                    <a href="intermediate.html" class="text-claw-600 font-semibold">进阶篇</a>
+                    <a href="advanced.html" class="text-gray-600 hover:text-claw-600">高级篇</a>
+                    <a href="https://docs.openclaw.ai" target="_blank" class="bg-claw-500 text-white px-4 py-2 rounded-lg hover:bg-claw-600">官方文档</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-32 pb-12 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-4">
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">进阶</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">⚡ 进阶配置</h1>
+            <p class="text-xl text-gray-600">飞书集成、Token 优化、记忆管理策略</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section 1: Feishu Integration -->
+            <div class="bg-white rounded-2xl shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                    配置飞书 (Feishu) 机器人
+                </h2>
+                
+                <p class="text-gray-700 mb-6">
+                    将 OpenClaw 接入飞书，让你在企业IM中直接使用 AI 助手。支持群聊、私聊、@提及等多种交互方式。
+                </p>
+                
+                <h3 class="font-semibold text-lg mb-3">1.1 创建飞书应用</h3>
+                <div class="bg-gray-900 rounded-xl p-4 mb-4">
+                    <ol class="text-green-400 font-mono text-sm space-y-2">
+                        <li>1. 访问 <a href="https://open.feishu.cn/app" class="text-blue-400 underline" target="_blank">飞书开放平台</a></li>
+                        <li>2. 点击"创建企业自建应用"</li>
+                        <li>3. 填写应用名称 (如：OpenClaw 助手)</li>
+                        <li>4. 在"凭证与基础信息"中记录 App ID 和 App Secret</li>
+                    </ol>
+                </div>
+                
+                <h3 class="font-semibold text-lg mb-3">1.2 配置机器人权限</h3>
+                <div class="bg-gray-900 rounded-xl p-4 mb-4">
+                    <p class="text-gray-400 text-sm mb-2"># 需要添加的权限</p>
+                    <code class="text-green-400 font-mono text-sm">
+消息：发送消息、读取消息<br>
+群组：获取群组信息<br>
+事件订阅：接收消息事件
+                    </code>
+                </div>
+                
+                <h3 class="font-semibold text-lg mb-3">1.3 配置 OpenClaw 飞书插件</h3>
+                <p class="text-gray-700 mb-3">在 workspace 中创建或编辑飞书配置文件：</p>
+                <div class="bg-gray-900 rounded-xl p-4">
+                    <code class="text-green-400 font-mono text-sm">
+# ~/.openclaw/workspace/feishu-config.json<br>
+{<br>
+  "appId": "cli_a1b2c3d4e5f6",<br>
+  "appSecret": "xxxxxxxxxxxxxxxx",<br>
+  "verificationToken": "your_verification_token",<br>
+  "encryptKey": "your_encrypt_key"<br>
+}
+                    </code>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mt-4">
+                    <p class="text-blue-800 font-semibold">💡 提示</p>
+                    <p class="text-blue-700 text-sm mt-1">
+                        配置完成后，在飞书开放平台配置事件订阅 URL，格式为：
+                        <code class="bg-blue-100 px-2 py-1 rounded">https://your-domain.com/feishu/event</code>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 2: Cache-TTL -->
+            <div class="bg-white rounded-2xl shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+                    Cache-TTL 上下文缓存修剪
+                </h2>
+                
+                <p class="text-gray-700 mb-4">
+                    长时间对话会积累大量上下文，导致 Token 消耗激增。Cache-TTL (Time-To-Live) 机制可以自动修剪过期缓存，节省成本。
+                </p>
+                
+                <h3 class="font-semibold text-lg mb-3">工作原理</h3>
+                <div class="bg-gray-100 rounded-xl p-4 mb-4">
+                    <ul class="text-gray-700 space-y-2">
+                        <li>• 每条消息缓存都有时间戳</li>
+                        <li>• 超过设定 TTL 的缓存会被标记为可清理</li>
+                        <li>• 当上下文接近 token 限制时，优先清理过期缓存</li>
+                    </ul>
+                </div>
+                
+                <h3 class="font-semibold text-lg mb-3">配置示例</h3>
+                <div class="bg-gray-900 rounded-xl p-4">
+                    <code class="text-green-400 font-mono text-sm">
+# ~/.openclaw/workspace/config.json<br>
+{<br>
+  "cache": {<br>
+    "ttl": 3600,           // 缓存有效期 (秒)，默认 1 小时<br>
+    "maxSize": 100,        // 最大缓存条数<br>
+    "cleanupInterval": 300 // 清理间隔 (秒)<br>
+  }<br>
+}
+                    </code>
+                </div>
+                
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mt-4">
+                    <p class="text-yellow-800 font-semibold">⚠️ 注意</p>
+                    <p class="text-yellow-700 text-sm mt-1">
+                        TTL 设置过短可能导致重要上下文丢失，建议根据实际场景调整：
+                        <br>• 短时任务：300-600 秒
+                        <br>• 日常对话：1800-3600 秒
+                        <br>• 长期项目：7200+ 秒
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 3: Auto-compaction -->
+            <div class="bg-white rounded-2xl shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">3</span>
+                    长文本压缩 (Auto-compaction)
+                </h2>
+                
+                <p class="text-gray-700 mb-4">
+                    当对话历史过长时，自动将早期对话压缩为摘要，保留核心信息的同时大幅减少 token 占用。
+                </p>
+                
+                <h3 class="font-semibold text-lg mb-3">配置压缩策略</h3>
+                <div class="bg-gray-900 rounded-xl p-4 mb-4">
+                    <code class="text-green-400 font-mono text-sm">
+# ~/.openclaw/workspace/config.json<br>
+{<br>
+  "compaction": {<br>
+    "enabled": true,<br>
+    "threshold": 50,       // 消息数超过 50 条触发压缩<br>
+    "targetSize": 20,      // 压缩后保留 20 条<br>
+    "summaryModel": "qwen2.5:7b"  // 用于生成摘要的模型<br>
+  }<br>
+}
+                    </code>
+                </div>
+                
+                <h3 class="font-semibold text-lg mb-3">压缩效果示例</h3>
+                <div class="bg-gray-100 rounded-xl p-4">
+                    <div class="text-sm space-y-3">
+                        <div>
+                            <p class="font-semibold text-gray-700">压缩前 (50 条消息):</p>
+                            <p class="text-gray-600">完整的 50 轮对话历史，约 15000 tokens</p>
+                        </div>
+                        <div class="border-t border-gray-300 pt-3">
+                            <p class="font-semibold text-gray-700">压缩后 (20 条 + 摘要):</p>
+                            <p class="text-gray-600">"[前 30 轮讨论了项目架构设计，确定了使用 Node.js + TypeScript 技术栈...]" + 最近 20 条消息，约 5000 tokens</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Memory Flush -->
+            <div class="bg-white rounded-2xl shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">4</span>
+                    记忆落盘 (Memory Flush)
+                </h2>
+                
+                <p class="text-gray-700 mb-4">
+                    将短期工作记忆定期写入磁盘，确保 Agent 重启后不丢失重要上下文。支持自动和手动两种模式。
+                </p>
+                
+                <h3 class="font-semibold text-lg mb-3">自动落盘配置</h3>
+                <div class="bg-gray-900 rounded-xl p-4 mb-4">
+                    <code class="text-green-400 font-mono text-sm">
+# ~/.openclaw/workspace/config.json<br>
+{<br>
+  "memory": {<br>
+    "autoFlush": true,<br>
+    "flushInterval": 600,    // 每 10 分钟自动落盘<br>
+    "flushOnExit": true,     // 退出时强制落盘<br>
+    "memoryDir": "./memory"  // 记忆文件存储目录<br>
+  }<br>
+}
+                    </code>
+                </div>
+                
+                <h3 class="font-semibold text-lg mb-3">手动落盘命令</h3>
+                <div class="bg-gray-900 rounded-xl p-4">
+                    <code class="text-green-400 font-mono text-sm">
+# 在聊天中发送<br>
+/memory flush<br><br>
+# 查看当前记忆状态<br>
+/memory status
+                    </code>
+                </div>
+                
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg mt-4">
+                    <p class="text-green-800 font-semibold">✅ 最佳实践</p>
+                    <ul class="text-green-700 text-sm mt-2 space-y-1">
+                        <li>• 重要任务开始前手动执行 /memory flush</li>
+                        <li>• 长时间运行的 Agent 启用自动落盘</li>
+                        <li>• 定期清理过期的 memory 文件释放空间</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="mt-12 flex justify-between">
+                <a href="beginner.html" class="text-gray-600 hover:text-claw-600 font-semibold">← 入门篇</a>
+                <a href="advanced.html" class="text-claw-600 hover:text-claw-700 font-semibold">高级篇：权限与自动化 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">基于 <a href="https://docs.openclaw.ai" class="text-claw-500 hover:underline" target="_blank">OpenClaw 官方文档</a> 制作的中文教程</p>
+            <p class="text-gray-500 mt-4">🐕 二狗制作 | 2026</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 中文教程 - 从零开始打造你的 AI 助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        claw: {
+                            50: '#fef7ee',
+                            100: '#feefdc',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-3xl mr-2">🐕</span>
+                    <span class="text-xl font-bold text-claw-600">OpenClaw 教程</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-claw-600 font-semibold">首页</a>
+                    <a href="beginner.html" class="text-gray-600 hover:text-claw-600">入门篇</a>
+                    <a href="intermediate.html" class="text-gray-600 hover:text-claw-600">进阶篇</a>
+                    <a href="advanced.html" class="text-gray-600 hover:text-claw-600">高级篇</a>
+                    <a href="https://docs.openclaw.ai" target="_blank" class="bg-claw-500 text-white px-4 py-2 rounded-lg hover:bg-claw-600">官方文档</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-claw-50 via-white to-orange-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-6xl mb-6">🐕</div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                打造你的 <span class="text-claw-600">AI 助手</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                OpenClaw 是一个开源的 AI Agent 框架，让你轻松创建拥有记忆、工具链和多渠道接入能力的智能助手。
+                从零基础到高级定制，本教程带你一步步掌握。
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="beginner.html" class="bg-claw-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-claw-600 shadow-lg transition">
+                    开始学习 →
+                </a>
+                <a href="https://github.com/openclaw/openclaw" target="_blank" class="bg-white text-claw-600 border-2 border-claw-500 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-claw-50 transition">
+                    GitHub 仓库
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">为什么选择 OpenClaw？</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-semibold mb-3">持久化记忆</h3>
+                    <p class="text-gray-600">Agent 拥有长期记忆和短期工作记忆，能够记住用户偏好、历史对话和重要上下文。</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-xl font-semibold mb-3">丰富工具链</h3>
+                    <p class="text-gray-600">内置文件读写、终端执行、网页浏览等工具，支持自定义技能扩展。</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-xl font-semibold mb-3">多渠道接入</h3>
+                    <p class="text-gray-600">支持微信、Telegram、Discord、飞书等多种消息平台，一处开发多处部署。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">学习路径</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="beginner.html" class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition block">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">入门</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">🚀 入门篇</h3>
+                    <p class="text-gray-600 mb-4">环境配置、快速启动、接入本地大模型</p>
+                    <span class="text-claw-600 font-semibold">开始学习 →</span>
+                </a>
+                <a href="intermediate.html" class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition block">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">进阶</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">⚡ 进阶篇</h3>
+                    <p class="text-gray-600 mb-4">飞书集成、Token 优化、记忆管理</p>
+                    <span class="text-claw-600 font-semibold">开始学习 →</span>
+                </a>
+                <a href="advanced.html" class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition block">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">高级</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">🔥 高级篇</h3>
+                    <p class="text-gray-600 mb-4">权限配置、自动化脚本、实战案例</p>
+                    <span class="text-claw-600 font-semibold">开始学习 →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">基于 <a href="https://docs.openclaw.ai" class="text-claw-500 hover:underline" target="_blank">OpenClaw 官方文档</a> 制作的中文教程</p>
+            <p class="text-gray-500 mt-4">🐕 二狗制作 | 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
